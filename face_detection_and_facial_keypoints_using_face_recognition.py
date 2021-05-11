@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw
 import sys
 from glob import glob 
 
-def face_recognition_and_detection_on_a_folder(input_folder, output_folder):
+def face_detection_and_facial_keypoints_on_a_folder(input_folder, output_folder):
     all_face_landmarks_list = []
     for ind, img_name in enumerate(glob(input_folder+"*")):
         # if ind == 2:
@@ -58,7 +58,7 @@ def face_recognition_and_detection_on_a_folder(input_folder, output_folder):
 # filename = img_name.split("\\")[-1]
 # print("\n\nimg_name : ", img_name)
 
-def face_recognition_and_detection(img_name):
+def face_detection_and_facial_keypoints(img_name):
     faceFoundStatus = False
     image = face_recognition.load_image_file(img_name)
     face_locations = face_recognition.face_locations(image)
@@ -89,11 +89,11 @@ def face_recognition_and_detection(img_name):
 input_folder = "input\\"
 output_folder = "output_facerecognition\\"
 
-all_face_landmarks_list = face_recognition_and_detection_on_a_folder(input_folder, output_folder)
+all_face_landmarks_list = face_detection_and_facial_keypoints_on_a_folder(input_folder, output_folder)
 print("\n")
 for ind, keypoint in enumerate(all_face_landmarks_list):
     print(f"{ind} : {keypoint}\n")
 
 img_name = "test.jpg"
-faceFoundStatus, imgfile, face_landmarks_list = face_recognition_and_detection(img_name)
+faceFoundStatus, imgfile, face_landmarks_list = face_detection_and_facial_keypoints(img_name)
 print("\nimg_name : ", faceFoundStatus, imgfile, face_landmarks_list)
